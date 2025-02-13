@@ -15,6 +15,7 @@ import { reduceEachLeadingCommentRange } from "typescript";
 
 // GET para consneguir toda la informacion del usuario
 app.get('/usuarios/:id_usuario', async (req, res) => {
+    console.log(`Petición recibida al endpoint GET /usuarios/:id_usuario`)
     try {
         let query = `SELECT * FROM usuarios WHERE id_usuario='${req.params.id_usuario}'`;
         let db_response = await db.query(query);
