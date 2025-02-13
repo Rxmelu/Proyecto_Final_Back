@@ -179,6 +179,32 @@ app.post('/clicks/:id_usuario', jsonParser, function (req, res) { return __await
         }
     });
 }); });
+// POST para actualziar las mejoras del usuario.
+app.post('/upgrade1/:id_usuario', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var query, db_response, err_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.log("Petici\u00F3n recibida al endpoint /upgrade1/:id:usuario");
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                query = "UPDATE usuarios SET upgrade1 = " + req.body.upgrade1 + " WHERE id_usuario = '" + req.params.id_usuario + "';";
+                return [4 /*yield*/, db.query(query)];
+            case 2:
+                db_response = _a.sent();
+                res.json("El nivel de mejora de upgrade1 ha sido actualizado.");
+                console.log("Upgrade1 Updated");
+                return [3 /*break*/, 4];
+            case 3:
+                err_5 = _a.sent();
+                console.error(err_5);
+                res.status(500).send('Internal Server Error');
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
     return console.log("App listening on PORT " + port + "\n    ENDPOINTS:\n    - GET /usuarios/:id_usuario\n    - POST /dinero/:id_usuario\n    - POST /clicks/:id_usuario\n    - POST /usuarios");

@@ -91,7 +91,22 @@ app.post('/clicks/:id_usuario', jsonParser, async (req, res) => {
     }
 });
 
-const port = process.env.PORT || 3000;
+// POST para actualziar las mejoras del usuario.
+app.post('/upgrade1/:id_usuario', jsonParser, async (req, res) => {
+    console.log(`Petición recibida al endpoint /upgrade1/:id:usuario`)
+    try{
+        let query = `UPDATE usuarios SET upgrade1 = ${req.body.upgrade1} WHERE id_usuario = '${req.params.id_usuario}';`
+        let db_response = await db.query(query);
+        res.json("El nivel de mejora de upgrade1 ha sido actualizado.")
+        console.log("Upgrade1 Updated")
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+
+    }
+});
+
+const port = 10000
 
 app.listen(port, () => 
     console.log(`App listening on PORT ${port}
