@@ -32,7 +32,29 @@ app.get('/usuarios/:id_usuario', async (req, res) => {
         console.error(err);
         res.status(500).send('Internal Server Error');
      }
-})
+});
+
+app.get('/leader_dinero', async (req, res) => {
+    try {
+        let query = `SELECT * FROM usuarios ORDER BY dinero DESC`;
+        let db_response = await db.query(query);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+     }
+});
+
+app.get('/leader_clicks', async (req, res) => {
+    try {
+        let query = `SELECT * FROM usuarios`;
+        let db_response = await db.query(query);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+     }
+});
 
 
 
