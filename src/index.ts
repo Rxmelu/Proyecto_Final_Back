@@ -47,8 +47,16 @@ app.get('/leader_dinero', async (req, res) => {
 
 app.get('/leader_clicks', async (req, res) => {
     try {
-        let query = `SELECT * FROM usuarios`;
+        let query = `SELECT * FROM usuarios ORDER BY cantidad_clicks DESC`;
         let db_response = await db.query(query);
+
+        if (db_response.rows.length > 0) {
+            res.json(db_response.rows);
+            console.log(db_response)
+        } else {
+            console.log("No se encontraron registros.");
+            res.json("No se encontraron registros.");
+        }
 
     } catch (err) {
         console.error(err);
