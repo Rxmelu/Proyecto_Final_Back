@@ -147,6 +147,7 @@ app.post('/upgrade1/:id_usuario', jsonParser, async (req, res) => {
     }
 });
 
+// POST para actualziar las mejoras del usuario.
 app.post('/upgrade2/:id_usuario', jsonParser, async (req, res) => {
     console.log(`Petición recibida al endpoint /upgrade2/:id_usuario`)
     try {
@@ -168,6 +169,10 @@ app.listen(port, () =>
     console.log(`App listening on PORT ${port}
     ENDPOINTS:
     - GET /usuarios/:id_usuario
+    - GET /leader_dinero
+    - GET /leader_clicks
+    - POST /usuarios
     - POST /dinero/:id_usuario
     - POST /clicks/:id_usuario
-    - POST /usuarios`));
+    - POST /upgrade1/:id_usuario
+    - POST /upgrade2/:id_usuario`));
