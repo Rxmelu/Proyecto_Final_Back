@@ -47,7 +47,7 @@ app.get('/leader_dinero', async (req, res) => {
 
 app.get('/leader_clicks', async (req, res) => {
     try {
-        let query = `SELECT * FROM usuarios ORDER BY cantidad_clicks DESC`;
+        let query = `SELECT * FROM usuarios ORDER BY cantidad_clicks DESC LIMIT 5`;
         let db_response = await db.query(query);
 
         if (db_response.rows.length > 0) {
