@@ -137,9 +137,6 @@ app.post('/upgrade1/:id_usuario', jsonParser, async (req, res) => {
         let query = `UPDATE usuarios SET upgrade1 = ${req.body.upgrade1} WHERE id_usuario = '${req.params.id_usuario}';`
         let db_response = await db.query(query);
 
-        let query2 = `UPDATE usuarios SET dinero = ${req.body.dinero} WHERE id_usuario = '${req.params.id_usuario}';`
-        let db_response2 = await db.query(query2);
-
         res.json("El nivel de mejora de upgrade1 ha sido actualizado.")
         console.log("Upgrade1 Updated")
 
