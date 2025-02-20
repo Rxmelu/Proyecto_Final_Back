@@ -9,7 +9,7 @@ var pg_1 = require("pg");
     port: 5433,
     database: 'basedatos_final'
 });*/
-var connectionString = 'postgresql://finalproyect_4cy3_user:LqY9r8LWN6uSirYMoAQAb3qHFiHB5lfV@dpg-cum655l6l47c7395btr0-a.frankfurt-postgres.render.com/finalproyect_4cy3';
+var connectionString = 'postgresql://finalproyect_4cy3_user:LqY9r8LWN6uSirYMoAQAb3qHFiHB5lfV@dpg-cum655l6l47c7395btr0-a/finalproyect_4cy3';
 var pool = new pg_1.Pool({
     connectionString: connectionString,
 });

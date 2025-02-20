@@ -72,10 +72,13 @@ app.get('/usuarios/:id_usuario', function (req, res) { return __awaiter(void 0, 
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                console.log("Petici\u00F3n recibida al endpoint GET /usuarios/:id_usuario");
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
                 query = "SELECT * FROM usuarios WHERE id_usuario='" + req.params.id_usuario + "'";
                 return [4 /*yield*/, db.query(query)];
-            case 1:
+            case 2:
                 db_response = _a.sent();
                 if (db_response.rows.length > 0) {
                     console.log("Usuario encontrado: " + db_response.rows[0].id_usuario);
@@ -85,10 +88,66 @@ app.get('/usuarios/:id_usuario', function (req, res) { return __awaiter(void 0, 
                     console.log("Usuario no encontrado.");
                     res.json("Usuario no encontrado.");
                 }
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 err_1 = _a.sent();
                 console.error(err_1);
+                res.status(500).send('Internal Server Error');
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/leader_dinero', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var query, db_response, err_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                query = "SELECT * FROM usuarios ORDER BY dinero DESC LIMIT 5";
+                return [4 /*yield*/, db.query(query)];
+            case 1:
+                db_response = _a.sent();
+                if (db_response.rows.length > 0) {
+                    res.json(db_response.rows);
+                    console.log(db_response);
+                }
+                else {
+                    console.log("No se encontraron registros.");
+                    res.json("No se encontraron registros.");
+                }
+                return [3 /*break*/, 3];
+            case 2:
+                err_2 = _a.sent();
+                console.error(err_2);
+                res.status(500).send('Internal Server Error');
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/leader_clicks', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var query, db_response, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                query = "SELECT * FROM usuarios ORDER BY cantidad_clicks DESC LIMIT 5";
+                return [4 /*yield*/, db.query(query)];
+            case 1:
+                db_response = _a.sent();
+                if (db_response.rows.length > 0) {
+                    res.json(db_response.rows);
+                    console.log(db_response);
+                }
+                else {
+                    console.log("No se encontraron registros.");
+                    res.json("No se encontraron registros.");
+                }
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                console.error(err_3);
                 res.status(500).send('Internal Server Error');
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -98,7 +157,7 @@ app.get('/usuarios/:id_usuario', function (req, res) { return __awaiter(void 0, 
 // POSTS
 // POST para crear usuarios
 app.post('/usuarios', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var query, db_response, err_2;
+    var query, db_response, err_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -119,8 +178,8 @@ app.post('/usuarios', jsonParser, function (req, res) { return __awaiter(void 0,
                 }
                 return [3 /*break*/, 4];
             case 3:
-                err_2 = _a.sent();
-                console.error(err_2);
+                err_4 = _a.sent();
+                console.error(err_4);
                 res.status(500).send('Internal Server Error');
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -129,7 +188,7 @@ app.post('/usuarios', jsonParser, function (req, res) { return __awaiter(void 0,
 }); });
 // POST para actualizar el dinero del usuario
 app.post('/dinero/:id_usuario', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var query, db_response, err_3;
+    var query, db_response, err_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -145,8 +204,8 @@ app.post('/dinero/:id_usuario', jsonParser, function (req, res) { return __await
                 console.log("Dinero Updated");
                 return [3 /*break*/, 4];
             case 3:
-                err_3 = _a.sent();
-                console.error(err_3);
+                err_5 = _a.sent();
+                console.error(err_5);
                 res.status(500).send('Internal Server Error');
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -155,7 +214,7 @@ app.post('/dinero/:id_usuario', jsonParser, function (req, res) { return __await
 }); });
 // POST para actualizar los clicks totales del usuario
 app.post('/clicks/:id_usuario', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var query, db_response, err_4;
+    var query, db_response, err_6;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -171,8 +230,8 @@ app.post('/clicks/:id_usuario', jsonParser, function (req, res) { return __await
                 console.log("Clicks Updated");
                 return [3 /*break*/, 4];
             case 3:
-                err_4 = _a.sent();
-                console.error(err_4);
+                err_6 = _a.sent();
+                console.error(err_6);
                 res.status(500).send('Internal Server Error');
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -181,11 +240,11 @@ app.post('/clicks/:id_usuario', jsonParser, function (req, res) { return __await
 }); });
 // POST para actualziar las mejoras del usuario.
 app.post('/upgrade1/:id_usuario', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var query, db_response, err_5;
+    var query, db_response, err_7;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log("Petici\u00F3n recibida al endpoint /upgrade1/:id:usuario");
+                console.log("Petici\u00F3n recibida al endpoint /upgrade1/:id_usuario");
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
@@ -197,8 +256,34 @@ app.post('/upgrade1/:id_usuario', jsonParser, function (req, res) { return __awa
                 console.log("Upgrade1 Updated");
                 return [3 /*break*/, 4];
             case 3:
-                err_5 = _a.sent();
-                console.error(err_5);
+                err_7 = _a.sent();
+                console.error(err_7);
+                res.status(500).send('Internal Server Error');
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
+// POST para actualziar las mejoras del usuario.
+app.post('/upgrade2/:id_usuario', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var query, db_response, err_8;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.log("Petici\u00F3n recibida al endpoint /upgrade2/:id_usuario");
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                query = "UPDATE usuarios SET upgrade2 = " + req.body.upgrade2 + " WHERE id_usuario = '" + req.params.id_usuario + "';";
+                return [4 /*yield*/, db.query(query)];
+            case 2:
+                db_response = _a.sent();
+                res.json("El nivel de mejora de upgrade2 ha sido actualizado.");
+                console.log("Upgrade2 Updated");
+                return [3 /*break*/, 4];
+            case 3:
+                err_8 = _a.sent();
+                console.error(err_8);
                 res.status(500).send('Internal Server Error');
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
@@ -207,5 +292,5 @@ app.post('/upgrade1/:id_usuario', jsonParser, function (req, res) { return __awa
 }); });
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
-    return console.log("App listening on PORT " + port + "\n    ENDPOINTS:\n    - GET /usuarios/:id_usuario\n    - POST /dinero/:id_usuario\n    - POST /clicks/:id_usuario\n    - POST /usuarios");
+    return console.log("App listening on PORT " + port + "\n    ENDPOINTS:\n    - GET /usuarios/:id_usuario\n    - GET /leader_dinero\n    - GET /leader_clicks\n    - POST /usuarios\n    - POST /dinero/:id_usuario\n    - POST /clicks/:id_usuario\n    - POST /upgrade1/:id_usuario\n    - POST /upgrade2/:id_usuario");
 });
